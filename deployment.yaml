@@ -1,0 +1,41 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: <DEPLOYMENT_NAME>
+#spec:
+#  replicas: <REPLICA_COUNT>
+#  selector:
+#    matchLabels:
+#      app: <APP_LABEL>
+#  template:
+#    metadata:
+#      labels:
+#        app: <APP_LABEL>
+#    spec:
+#      containers:
+#        - name: <CONTAINER_NAME>
+#          image: <IMAGE_NAME>:<TAG>
+#          imagePullPolicy: IfNotPresent
+#          ports:
+#            - containerPort: <PORT_NUMBER>
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-app
+  template:
+    metadata:
+      labels:
+        app: spring-app
+    spec:
+      containers:
+        - name: spring-deployment-container
+          image: springboot-docker-kubernetes:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
